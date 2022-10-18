@@ -63,7 +63,9 @@ public class Queue {
     }
 
     public void switchPeople(int i1, int i2) {
-        Collections.swap(this.line, i1, i2);
+        if (i1>=0 && i1<this.line.size() && i2>=0 && i2<this.line.size()) {
+            Collections.swap(this.line, i1, i2);
+        }
     }
 
     public void switchPeople(String nick1, String nick2) {
