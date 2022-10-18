@@ -17,8 +17,17 @@ public class TelegramHandler {
     }
 
     private InlineKeyboardMarkup creationMarkup() {
-        return new InlineKeyboardMarkup(new InlineKeyboardButton("Записаться").callbackData("join"),
-                new InlineKeyboardButton("Отписаться").callbackData("leave"));
+        //return new InlineKeyboardMarkup(new InlineKeyboardButton("Записаться").callbackData("join"),
+        //        new InlineKeyboardButton("Отписаться").callbackData("leave"));
+        return new InlineKeyboardMarkup(
+                new InlineKeyboardButton[] {
+                        new InlineKeyboardButton("Записаться").callbackData("join"),
+                        new InlineKeyboardButton("Отписаться").callbackData("leave")
+                },
+                new InlineKeyboardButton[] {
+                        new InlineKeyboardButton("Следующий").callbackData("next"),
+                });
+
     }
 
     public Message replyQueueCreation(Queue q, Message creationMessage) {

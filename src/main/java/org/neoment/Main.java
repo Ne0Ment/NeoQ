@@ -41,7 +41,7 @@ public class Main {
                                 q.setMessageId(sent.messageId());
                                 qHandler.addQueue(q);
                             }
-                            case "/switch", "/remove", "/ban", "/unban", "/next", "/owner", "/rename" -> {
+                            case "/switch", "/remove", "/ban", "/unban", "/owner", "/rename" -> {
                                 if (upd.message().replyToMessage()==null) break;
 
                                 Queue q = qHandler.getQueueByHome(utils.msgOrigin(upd.message().replyToMessage()));
@@ -79,11 +79,6 @@ public class Main {
                                             if (argsList.size()==1) break;
                                             q.unbanPerson(argsList.get(1).substring(1));
                                         }
-                                        case "/next" -> {
-                                            Person firstPerson = q.getLine().get(0);
-                                            q.deletePerson(0);
-                                            q.addPerson(firstPerson);
-                                        }
                                         case "/owner" -> {
                                             if (argsList.size()==1) break;
                                             q.setOwner(argsList.get(1).substring(1));
@@ -101,6 +96,7 @@ public class Main {
                     }
                 } else if (upd.callbackQuery()!=null) {
                     Queue q = qHandler.getQueueByHome(utils.msgOrigin(upd.callbackQuery().message()));
+                    Person sender = utils.personFromUser(upd.callbackQuery().from());
                     if (q==null) break;
                     switch (upd.callbackQuery().data()) {
                         case "join" -> {
@@ -108,6 +104,13 @@ public class Main {
                         }
                         case "leave" -> {
                             q.deletePerson(upd.callbackQuery().from().username());
+                        }
+                        case "next" -> {
+                            if (q.checkOwner(sender.getNick()) || sender.getId().equals(godId)) {
+                                Person firstPerson = q.getLine().get(0);
+                                q.deletePerson(0);
+                                q.addPerson(firstPerson);
+                            }
                         }
                         default -> {}
                     }
@@ -119,3 +122,6 @@ public class Main {
         });
     }
 }
+
+//TODO: юзеры могут меняться друг с другом
+//TODO: переделать /next на inline кнопку
