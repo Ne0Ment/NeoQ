@@ -112,6 +112,13 @@ public class Main {
                                 q.addPerson(firstPerson);
                             }
                         }
+                        case "previous" -> {
+                            if (q.checkOwner(sender.getNick()) || sender.getId().equals(godId)) {
+                                Person lastPerson = q.getLine().get(q.getLine().size()-1);
+                                q.deletePerson(q.getLine().size()-1);
+                                q.addFirstPerson(lastPerson);
+                            }
+                        }
                         default -> {}
                     }
                     teleHandler.updateQueueMessage(q);

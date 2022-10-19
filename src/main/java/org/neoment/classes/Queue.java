@@ -80,6 +80,12 @@ public class Queue {
         if (!personExists && !personBanned) this.line.add(person);
     }
 
+    public void addFirstPerson(Person person) {
+        boolean personExists = this.line.stream().anyMatch(o -> Objects.equals(o.getId(), person.getId()));
+        boolean personBanned = this.bannedNicks.stream().anyMatch(o -> Objects.equals(o, person.getNick()));
+        if (!personExists && !personBanned) this.line.add(0, person);
+    }
+
     public void setOrigin(String origin) {
         this.home = origin;
     }

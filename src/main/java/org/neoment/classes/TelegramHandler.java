@@ -25,7 +25,8 @@ public class TelegramHandler {
                         new InlineKeyboardButton("Отписаться").callbackData("leave")
                 },
                 new InlineKeyboardButton[] {
-                        new InlineKeyboardButton("Следующий").callbackData("next"),
+                        new InlineKeyboardButton("След.").callbackData("next"),
+                        new InlineKeyboardButton("Пред.").callbackData("previous"),
                 });
 
     }
