@@ -7,3 +7,4 @@ Commands (all commands except /create should be used as a reply to a queue) </br
  - /ban - ban someone from joining the queue (/ban @user or /ban userIdInQueue) </br>
  - /unban - unban someone (/unban @user or /unban userIdInQueue) </br>
  - /rename - rename the queue (/rename newName) </br>
+ - /shuffle - shuffle the queue </br>

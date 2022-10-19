@@ -47,7 +47,7 @@ public class Main {
                                     q.setMessageId(sent.messageId());
                                     qHandler.addQueue(q);
                                 }
-                                case "/switch", "/remove", "/ban", "/unban", "/owner", "/rename" -> {
+                                case "/switch", "/remove", "/ban", "/unban", "/owner", "/rename", "/shuffle" -> {
                                     if (upd.message().replyToMessage()==null) break;
 
                                     Queue q = qHandler.getQueueByHome(utils.msgOrigin(upd.message().replyToMessage()));
@@ -92,6 +92,9 @@ public class Main {
                                             case "/rename" -> {
                                                 String qName = argsList.size()==1 ? "default" : String.join(" ", argsList.subList(1, argsList.size()));
                                                 q.setName(qName);
+                                            }
+                                            case "/shuffle" -> {
+                                                q.shuffleLine();
                                             }
                                         }
                                     }

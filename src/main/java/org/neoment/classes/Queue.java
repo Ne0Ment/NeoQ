@@ -86,6 +86,10 @@ public class Queue {
         if (!personExists && !personBanned) this.line.add(0, person);
     }
 
+    public void shuffleLine() {
+        Collections.shuffle(this.line);
+    }
+
     public void setOrigin(String origin) {
         this.home = origin;
     }
