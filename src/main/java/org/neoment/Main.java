@@ -24,6 +24,7 @@ public class Main {
         bot.setUpdatesListener(updates -> {
             for (Update upd : updates) {
                 if (upd.message()!=null) {
+                    if (upd.message().text().equals("")) continue;
                     if (!upd.message().text().startsWith("/")) continue;
                     List<String> argsList = Arrays.asList(upd.message().text().trim().split("\\s+"));
                     Person sender = utils.personFromMessage(upd.message());
