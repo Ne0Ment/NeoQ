@@ -12,7 +12,7 @@ public class utils {
     }
 
     public static Person personFromUser(User user) {
-        return new Person(user.id().toString(), user.username(), user.firstName() + " " + user.lastName());
+        return new Person(user.id().toString(), user.username(), (user.firstName()==null ? "" : user.firstName()) + " " + (user.lastName()==null? "" : user.lastName()));
     }
 
     public static Person personFromMessage(Message msg) {
